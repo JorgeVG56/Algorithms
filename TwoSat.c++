@@ -34,7 +34,7 @@ struct TarjanSolver{
   void findComp(int u){
     visited[u] = true;
     comp[u] = id;
-    for(auto v : revAdj[u]) if(!visited[v]) findComp(v);
+    for(auto v : adj[u]) if(!visited[v]) findComp(v);
   }
 
   int compNum(){ return id; }
