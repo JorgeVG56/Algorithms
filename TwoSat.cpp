@@ -3,8 +3,8 @@ using namespace std;
 using ll = long long;
 
 struct TarjanSolver{
-  vector<vector<int>> revAdj;
   vector<vector<int>> & adj;
+  vector<vector<int>> revAdj;
   vector<int> post, comp;
   vector<bool> visited;
   int timer = 0;
