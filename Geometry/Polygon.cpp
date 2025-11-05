@@ -29,14 +29,13 @@ struct Point {
 struct Polygon{
   int n;
   vector<Point> points;
-  double area;
 
-  Polygon(int a = 0) : n(a), points(n), area(0) { }
-
-  void calcArea(){
-    area = 0;
+  Polygon(int a = 0) : n(a), points(n) { }
+  
+  double getArea(){
+    double area = 0;
     for(int i = 0; i < n; i++) area += (double)points[i].cross(points[(i + 1) % n]);
-    area = abs(area) / 2;
+    return abs(area) / 2;
   }
 
   bool inDisk(Point p, Point p1, Point p2){ return (p - p1).dot(p - p2) <= 0; }
