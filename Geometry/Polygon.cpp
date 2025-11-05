@@ -34,8 +34,24 @@ struct Polygon{
   Polygon(int a = 0) : n(a), points(n), area(0) { }
 
   void calcArea(){
+    area = 0;
     for(int i = 0; i < n; i++) area += (double)points[i].cross(points[(i + 1) % n]);
     area = abs(area) / 2;
+  }
+
+  bool inDisk(Point p, Point p1, Point p2){ return (p - p1).dot(p - p2) <= 0; }
+  bool onSegment(Point p, Point p1, Point p2){ return p1.cross(p2, p) == 0 && inDisk(p, p1, p2); }
+
+  // -1/0/1 -> Outside/On Polygon/Inside
+  int insidePolygon(Point p){
+    int cnt = 0;
+    for(int i = 0; i < n; i++){
+      Point pA = points[i], pB = points[(i + 1) % n];
+      if(onSegment(p, pA, pB)) return 0;
+      if(pA.y <= p.y && p.y < pB.y && p.cross(pA, pB) > 0) cnt ^= 1;
+      if(pB.y <= p.y && p.y < pA.y && p.cross(pB, pA) > 0) cnt ^= 1;
+    }
+    return cnt ? 1 : -1;
   }
 
   friend istream &operator>>(istream &in, Polygon & p){
