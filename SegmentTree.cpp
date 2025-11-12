@@ -38,7 +38,7 @@ struct SegmentTree{
     }
 
     int tm = (tl + tr) >> 1;
-    if(tm <= idx) update(lp, tl, tm, idx, x);
+    if(idx <= tm) update(lp, tl, tm, idx, x);
     else update(rp, tm + 1, tr, idx, x);
     st[u] = st[lp] + st[rp];
   }
