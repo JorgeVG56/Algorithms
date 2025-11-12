@@ -32,10 +32,22 @@ struct Polygon{
 
   Polygon(int a = 0) : n(a), points(n) { }
   
+  ll getDoubleArea(){
+    ll area = 0;
+    for(int i = 0; i < n; i++) area += points[i].cross(points[(i + 1) % n]);
+    return abs(area);
+  }
+
   double getArea(){
-    double area = 0;
-    for(int i = 0; i < n; i++) area += (double)points[i].cross(points[(i + 1) % n]);
-    return abs(area) / 2;
+    return (double)getDoubleArea() / 2;
+  }
+
+  pair<ll, ll> getLatticePoints(){
+    ll area = getDoubleArea();
+    ll boundary = 0;
+    for(int i = 0; i < n; i++) boundary += __gcd(abs(points[i].x - points[(i + 1) % n].x), abs(points[i].y - points[(i + 1) % n].y));
+    ll inside = (area - boundary) / 2ll + 1ll;
+    return {inside, boundary};
   }
 
   bool inDisk(Point p, Point p1, Point p2){ return (p - p1).dot(p - p2) <= 0; }
