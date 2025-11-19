@@ -4,6 +4,7 @@ using ll = long long;
 
 struct Item{
 
+  Item() { }
   Item (int n) { }
 
   Item operator+(Item item){
@@ -44,7 +45,7 @@ struct SegmentTree{
   }
 
   Item query(int u, int tl, int tr, int l, int r){
-    if(r < l) return 0;
+    if(r < l) return Item();
     if(tl == l && tr == r) return st[u];
 
     int tm = (tl + tr) >> 1;
