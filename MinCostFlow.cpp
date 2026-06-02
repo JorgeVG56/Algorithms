@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 using ll = long long;
-const int INF = 1e9;
+const ll INF = 1e9;
 
 struct Edge{
   int u, v, cap, cost; 
