@@ -1,3 +1,9 @@
+#pragma GCC optimize("O3,unroll-loops")
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int INF = 1e9;
+
 vector<int> manacher_odd(string s) {
   int n = s.size();
   s = "$" + s + "^";
