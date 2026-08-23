@@ -12,7 +12,7 @@ void preCalc(vector<vector<int>> & adj, int root = 0) {
   jmp.assign(24, vector<int>(n, -1));
   depth.assign(n, 0);
   auto dfs = [&](auto & self, int u, int p = -1) -> void {
-    jmp[u][0] = p;
+    jmp[0][u] = p;
     for(int i = 1; i < 24; i++) 
       if(jmp[i - 1][u] != -1) 
         jmp[i][u] = jmp[i - 1][jmp[i - 1][u]];
