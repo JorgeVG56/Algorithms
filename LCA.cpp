@@ -28,12 +28,12 @@ void preCalc(vector<vector<int>> & adj, int root = 0) {
 int lca(int u, int v) {
   if(depth[u] < depth[v]) swap(u, v);
   int dist = depth[u] - depth[v];
-  for(int i = 31; i >= 0; i--) 
+  for(int i = 23; i >= 0; i--) 
     if((dist >> i) & 1) u = jmp[i][u];
 
   if(u == v) return u;
   
-  for(int i = 31; i >= 0; i--) {
+  for(int i = 23; i >= 0; i--) {
     if(jmp[i][u] == jmp[i][v]) continue;
     u = jmp[i][u], v = jmp[i][v];
   }
