@@ -4,7 +4,7 @@ using namespace std;
 using ll = long long;
 const int INF = 1e9;
 
-pair<vector<vector<int>>, int> cdfs(vector<vector<int>> & adj) {
+pair<vector<vector<int>>, int> getCentroidTree(vector<vector<int>> & adj) {
   int n = size(adj); 
 
   vector<int> size(n), taken(n);
@@ -26,7 +26,6 @@ pair<vector<vector<int>>, int> cdfs(vector<vector<int>> & adj) {
   };
 
   vector<vector<int>> centroidTree(n);
-
   auto buildCentroidTree = [&](auto & self, int u = 0) -> int {
     int centroid = dfsC(dfsC, u, dfsZ(dfsZ, u));
     taken[centroid] = true;
