@@ -28,7 +28,7 @@ struct Point {
 	}
 };
 
-vector<Point> convexHull(vector<Point> & a) {
+vector<Point> convexHull(vector<Point> & a, bool includeCollinear = false) {
   auto orientation = [&](Point a, Point b, Point c) -> int {
     double v = a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y);
     if(v < 0) return -1;
@@ -38,7 +38,11 @@ vector<Point> convexHull(vector<Point> & a) {
 
   auto cw = [&](Point a, Point b, Point c) -> bool {
     int o = orientation(a, b, c);
-    return o < 0;
+    return o < 0 || (o == 0 &&  includeCollinear) ;
+  };
+
+  auto collinear = [&](Point a, Point b, Point c) -> bool {
+    return orientation(a, b, c) == 0;
   };
 
   Point p0 = *min_element(begin(a), end(a), [&](Point a, Point b) -> bool {
@@ -50,6 +54,12 @@ vector<Point> convexHull(vector<Point> & a) {
     if(o == 0) return p0.dist(a) < p0.dist(b);
     return o < 0;
   });
+
+  if(includeCollinear) {
+    int i = a.size() - 1;
+    while(i >= 0 && collinear(p0, a[i], a.back())) i--;
+    reverse(a.begin() + i + 1, a.end());
+  }
 
   vector<Point> st;
 
