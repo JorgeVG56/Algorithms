@@ -39,36 +39,4 @@ struct SuffixAutomaton {
     }
     last = cur;
   }
-  
-  ll dfs(int u) {
-    if (st[u].dp != -1) return st[u].dp;
-    st[u].dp = 1;
-    for (int c = 0; c < 26; c++)
-      if (st[u].nxt[c] != -1)
-        st[u].dp += dfs(st[u].nxt[c]);
-    return st[u].dp;
-  }
-  
-  string kth(ll k) {
-    dfs(0);
-    string ans;
-    int u = 0;
-    
-    while (1) {
-      for (int c = 0; c < 26; c++) {
-        int v = st[u].nxt[c];
-        if (v == -1) continue;
-        
-        if (k > st[v].dp) k -= st[v].dp;
-        else {
-          ans += 'a' + c;
-          u = v;
-          if (--k == 0) return ans;
-          break;
-        }
-      }
-    }
-
-    return ".";
-  }
 };
