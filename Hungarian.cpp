@@ -13,10 +13,10 @@ ll hungarian(vector<vector<ll>> & cost) {
     vector<ll> minv(m + 1, INF), used(m + 1);
     do {
       used[j0] = true;
-      int i0 = p[j0], delta = INF, j1;
+      ll i0 = p[j0], delta = INF, j1;
       for(int j = 1; j <= m; j++) {
         if(used[j]) continue;
-        int cur = cost[i0][j] - u[i0] - v[j];
+        ll cur = cost[i0 - 1][j - 1] - u[i0] - v[j];
         if(cur < minv[j]) minv[j] = cur, way[j] = j0;
         if(minv[j] < delta) delta = minv[j], j1 = j;
       }
