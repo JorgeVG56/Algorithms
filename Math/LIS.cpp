@@ -10,7 +10,7 @@ int LIS(vector<int> & a) {
 	for(int & x : a){
 		int pos = lower_bound(dp.begin(), dp.end(), x) - dp.begin();
 		if (pos == dp.size()) dp.push_back(x);
-		else dp[pos] = i;
+		else dp[pos] = x;
 	}
     
 	return dp.size();

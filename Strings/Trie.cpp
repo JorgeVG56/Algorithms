@@ -28,7 +28,7 @@ struct Trie{
       if(nodes[node].nxt[c - 'a'] == -1){
         nodes[node].nxt[c - 'a'] = size(nodes); nodes.emplace_back();
       }
-      node = ndoes[node].nxt[c - 'a'];
+      node = nodes[node].nxt[c - 'a'];
     }
   }
 };
