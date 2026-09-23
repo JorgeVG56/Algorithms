@@ -35,7 +35,7 @@ struct Trie{
   void bfs(){
     queue<int> q;
     for(int i = 0; i < 26; i++){
-      if(nodes[root].nxt[i] != -1) continue;
+      if(nodes[root].nxt[i] == -1) continue;
       nodes[nodes[root].nxt[i]].suffix = root;
       q.push(nodes[root].nxt[i]);
     }
